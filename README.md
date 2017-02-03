@@ -34,6 +34,7 @@ Manifest:
 
 
 Activity/Fragment usage:
+
 1. 
             YourActivity implements CameraGestureSensor.Listener
 
