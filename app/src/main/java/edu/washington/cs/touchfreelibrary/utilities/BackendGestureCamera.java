@@ -1,19 +1,10 @@
 package edu.washington.cs.touchfreelibrary.utilities;
 
 import android.app.Activity;
-import android.graphics.PixelFormat;
-import android.hardware.Camera;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
-
-import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.JavaCameraView;
-import org.opencv.core.Size;
-
-import java.util.List;
 
 import ca.useful.newhandwave.R;
 

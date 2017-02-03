@@ -14,25 +14,13 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
-import org.opencv.core.Size;
-
-import org.opencv.imgproc.Imgproc;
-
-import android.Manifest;
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
-import android.os.Build;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
-import android.view.SurfaceView;
-import android.view.View;
 import android.view.WindowManager;
 
 /**

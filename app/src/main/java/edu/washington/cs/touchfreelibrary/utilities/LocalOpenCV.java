@@ -1,18 +1,13 @@
 package edu.washington.cs.touchfreelibrary.utilities;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.util.Log;
 import android.widget.RelativeLayout;
-
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-
 import ca.useful.newhandwave.R;
 import edu.washington.cs.touchfreelibrary.sensors.CameraGestureSensor;
 

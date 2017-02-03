@@ -1,8 +1,5 @@
 package ca.useful.newhandwave;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 import org.opencv.android.JavaCameraView;
 import edu.washington.cs.touchfreelibrary.sensors.CameraGestureSensor;
@@ -23,8 +19,7 @@ public class MainActivity extends AppCompatActivity implements CameraGestureSens
     private static final String TAG = "MainActivity";
     private JavaCameraView mCamera = null;
     CameraGestureSensor mGestureSensor = null;
-    private RelativeLayout root = null;
-    private LocalOpenCV loc = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +39,10 @@ public class MainActivity extends AppCompatActivity implements CameraGestureSens
         loadOpenCV();
     }
 
-    protected void retrieveControls() {
-        mCamera = (JavaCameraView) findViewById(R.id.camera);
-    }
 
     protected void loadOpenCV() {
-//        retrieveControls();\
         if (PermissionUtility.checkCameraPermission(this)) {
-            loc = new LocalOpenCV(this, this);
+            LocalOpenCV loc = new LocalOpenCV(this, this);
         }
     }
 
