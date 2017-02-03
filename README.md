@@ -7,11 +7,17 @@ The sensing of motion is now more accurate (opposed to swiping up and it picks u
 I have added convenience methods for initializing and checking permissions > Android M
 
 Usage on a seperate project:
+
 1. Download the library to your computer
+
 2. Open the project you want to add this to
+
 3. File -> New -> Import Module
+
 4. Check Both -> OK -> Wait for the libraries to index
+
 5. The library is now included in your original file
+
 
 
 Manifest:
