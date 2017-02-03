@@ -21,70 +21,72 @@ Manifest:
 
 Activity/Fragment usage:
 1. 
-  YourActivity implements CameraGestureSensor.Listener
+            YourActivity implements CameraGestureSensor.Listener
 
 2. 
-  @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        if (PermissionUtility.checkCameraPermission(this)) {
-            LocalOpenCV loader = new LocalOpenCV(MainActivity.this, MainActivity.this);
-        }
-    }
-    
+                  @Override
+                protected void onCreate(Bundle savedInstanceState) {
+                    super.onCreate(savedInstanceState);
+                    setContentView(R.layout.activity_main);
+                    if (PermissionUtility.checkCameraPermission(this)) {
+                        LocalOpenCV loader = new LocalOpenCV(MainActivity.this, MainActivity.this);
+                    }
+                }
+
 3. 
-  @Override
-    public void onResume() {
-        super.onResume();
-        if (PermissionUtility.checkCameraPermission(this)) {
-            LocalOpenCV loader = new LocalOpenCV(MainActivity.this, MainActivity.this);
-        }
-    }
+                    @Override
+                      public void onResume() {
+                          super.onResume();
+                          if (PermissionUtility.checkCameraPermission(this)) {
+                              LocalOpenCV loader = new LocalOpenCV(MainActivity.this, MainActivity.this);
+                          }
+                      }
 
 4. Customize the following to correspond to the actions the sensor picks up:
 
-  @Override
-    public void onGestureUp(CameraGestureSensor caller, long gestureLength) {
-        Log.i(TAG, "Up");
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(MainActivity.this, "Hand Motion Up", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+              @Override
+                public void onGestureUp(CameraGestureSensor caller, long gestureLength) {
+                    Log.i(TAG, "Up");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Hand Motion Up", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
 
-    @Override
-    public void onGestureDown(CameraGestureSensor caller, long gestureLength) {
-        Log.i(TAG, "Down");
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(MainActivity.this, "Hand Motion Down", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onGestureDown(CameraGestureSensor caller, long gestureLength) {
+                    Log.i(TAG, "Down");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Hand Motion Down", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-    }
+                }
 
-    @Override
-    public void onGestureLeft(CameraGestureSensor caller, long gestureLength) {
-        Log.i(TAG, "Left");
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(MainActivity.this, "Hand Motion Left", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+                @Override
+                public void onGestureLeft(CameraGestureSensor caller, long gestureLength) {
+                    Log.i(TAG, "Left");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Hand Motion Left", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
 
-    @Override
-    public void onGestureRight(CameraGestureSensor caller, long gestureLength) {
-        Log.i(TAG, "RIght");
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(MainActivity.this, "Hand Motion Right", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+                @Override
+                public void onGestureRight(CameraGestureSensor caller, long gestureLength) {
+                    Log.i(TAG, "RIght");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Hand Motion Right", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                
+ Enjoy!
