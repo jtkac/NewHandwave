@@ -369,18 +369,12 @@ public class CameraGestureSensor extends ClickSensor implements CameraBridgeView
         if (mCamera == null) {
             mCamera = camera;
             mCamera.setCameraIndex(getFrontCameraId());
-            mCamera.enableFpsMeter();
-            mCamera.setVisibility(SurfaceView.VISIBLE);
+            mCamera.setAlpha(0);
             mCamera.enableView();
-
         }
     }
 
     private void setCameraSettings(int cameraId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (mContext.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions((Activity)mContext, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PermissionCodes.CAMERAPERMISSIONCODE);
-            } else { //you camera action as you want
                 Camera mCam = Camera.open(cameraId);
                 Camera.Parameters params = mCam.getParameters();
 
@@ -390,18 +384,6 @@ public class CameraGestureSensor extends ClickSensor implements CameraBridgeView
 
                 mCam.setParameters(params);
                 mCam.release();
-            }
-        } else {
-            Camera mCam = Camera.open(cameraId);
-            Camera.Parameters params = mCam.getParameters();
-
-            params.set("iso", "400"); // values can be "auto", "100", "200", "400", "800", "1600"
-            params.setExposureCompensation(2);
-            params.setWhiteBalance("fluorescent");
-
-            mCam.setParameters(params);
-            mCam.release();
-        }
     }
 
     /**
@@ -422,6 +404,8 @@ public class CameraGestureSensor extends ClickSensor implements CameraBridgeView
 
         //Try manipulate some settings on the camera
         setCameraSettings(mCameraId);
+        loadLibrary();
+
     }
 
     /**
@@ -557,7 +541,6 @@ public class CameraGestureSensor extends ClickSensor implements CameraBridgeView
         reenableCamera(cameraView);
         double smallestPreviewSize = 640 * 480; // We should be smaller than this...
         double smallestWidth = 320; // Let's not get smaller than this...
-
         for (Camera.Size previewSize : previewSizes) {
             if (previewSize.width * previewSize.height < smallestPreviewSize && previewSize.width >= smallestWidth) {
                 mPreviewSize = previewSize;
@@ -685,7 +668,7 @@ public class CameraGestureSensor extends ClickSensor implements CameraBridgeView
                 }
             }
         }
-			
+
             /*
 			if(isHorScrollAdjustForScreen()) 
 			{	
