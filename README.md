@@ -65,7 +65,7 @@ Activity/Fragment usage:
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this, "Hand Motion Up", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(YourActivity.this, "Hand Motion Up", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -76,7 +76,7 @@ Activity/Fragment usage:
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this, "Hand Motion Down", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(YourActivity.this, "Hand Motion Down", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -88,7 +88,7 @@ Activity/Fragment usage:
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this, "Hand Motion Left", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(YourActivity.this, "Hand Motion Left", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -99,7 +99,7 @@ Activity/Fragment usage:
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this, "Hand Motion Right", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(YourActivity.this, "Hand Motion Right", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
