@@ -16,7 +16,15 @@ Usage on a seperate project:
 
 4. Check Both -> OK -> Wait for the libraries to index
 
-5. The library is now included in your original file
+5. Right Click your app module -> Open Module Settings
+
+6. Click the dependencies tab 
+
+7. Click the + icon and select the module option
+
+8. Add Both the openCV module and the NewHandwave module
+
+9. The library is now usable in your project (See below for instructions)
 
 
 
