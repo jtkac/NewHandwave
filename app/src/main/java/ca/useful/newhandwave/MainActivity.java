@@ -14,12 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.JavaCameraView;
-import org.opencv.android.LoaderCallbackInterface;
-import org.opencv.android.OpenCVLoader;
-
 import edu.washington.cs.touchfreelibrary.sensors.CameraGestureSensor;
 import edu.washington.cs.touchfreelibrary.utilities.LocalOpenCV;
 import edu.washington.cs.touchfreelibrary.utilities.PermissionUtility;
