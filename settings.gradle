@@ -1,2 +1,2 @@
-include ':app'
+include ':newhandwaveapp'
 include ':openCVLibrary310'
