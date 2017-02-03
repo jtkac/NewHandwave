@@ -1,5 +1,8 @@
 package ca.useful.newhandwave;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -30,10 +33,20 @@ public class MainActivity extends AppCompatActivity implements CameraGestureSens
                 case LoaderCallbackInterface.SUCCESS:
                 {
                     mGestureSensor = new CameraGestureSensor(MainActivity.this);
-                    CameraGestureSensor.loadLibrary();
-                    mGestureSensor.addGestureListener(MainActivity.this);
-
-                    mGestureSensor.start(mCamera);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                            CameraGestureSensor.loadLibrary();
+                            mGestureSensor.addGestureListener(MainActivity.this);
+                            mGestureSensor.start(mCamera);
+                        } else {
+                            //The user has  not yet accepted the app to use the camera
+                        }
+                    } else {
+                        //The device automatically accepts permissions based on what is declared in the manifest
+                        CameraGestureSensor.loadLibrary();
+                        mGestureSensor.addGestureListener(MainActivity.this);
+                        mGestureSensor.start(mCamera);
+                    }
                 }
                 break;
                 default:
@@ -154,9 +167,18 @@ public class MainActivity extends AppCompatActivity implements CameraGestureSens
     public void onResume()
     {
         super .onResume();
-        retrieveControls();
-        if (mGestureSensor == null)
-            mGestureSensor = new CameraGestureSensor(MainActivity.this);
-        mGestureSensor.start(mCamera);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                retrieveControls();
+                if (mGestureSensor == null)
+                    mGestureSensor = new CameraGestureSensor(MainActivity.this);
+                mGestureSensor.start(mCamera);
+            }
+        } else {
+            retrieveControls();
+            if (mGestureSensor == null)
+                mGestureSensor = new CameraGestureSensor(MainActivity.this);
+            mGestureSensor.start(mCamera);
+        }
     }
 }

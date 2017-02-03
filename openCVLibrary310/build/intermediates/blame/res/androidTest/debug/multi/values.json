@@ -1,10 +1,6 @@
 [
     {
-        "outputFile": "X:\\WorkInProgressFolder\\NewHandwave\\openCVLibrary310\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
-        "map": []
-    },
-    {
-        "outputFile": "X:\\Android\\NewHandwave\\openCVLibrary310\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+        "outputFile": "D:\\Android\\My Projects\\NewHandwave\\openCVLibrary310\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": []
     }
 ]
