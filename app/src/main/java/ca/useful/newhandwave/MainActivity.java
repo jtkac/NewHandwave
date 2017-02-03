@@ -1,5 +1,8 @@
 package ca.useful.newhandwave;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,39 +12,19 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.JavaCameraView;
-import org.opencv.android.LoaderCallbackInterface;
-import org.opencv.android.OpenCVLoader;
-
 import edu.washington.cs.touchfreelibrary.sensors.CameraGestureSensor;
+import edu.washington.cs.touchfreelibrary.utilities.LocalOpenCV;
+import edu.washington.cs.touchfreelibrary.utilities.PermissionUtility;
 
 public class MainActivity extends AppCompatActivity implements CameraGestureSensor.Listener {
     private static final String TAG = "MainActivity";
     private JavaCameraView mCamera = null;
     CameraGestureSensor mGestureSensor = null;
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-        @Override
-        public void onManagerConnected(int status) {
-            switch(status)
-            {
-                case LoaderCallbackInterface.SUCCESS:
-                {
-                    mGestureSensor = new CameraGestureSensor(MainActivity.this);
-                    CameraGestureSensor.loadLibrary();
-                    mGestureSensor.addGestureListener(MainActivity.this);
-
-                    mGestureSensor.start(mCamera);
-                }
-                break;
-                default:
-                    Log.i(TAG, "Some other result than success");
-                    break;
-            }
-        }
-    };
+    private RelativeLayout root = null;
+    private LocalOpenCV loc = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,26 +41,20 @@ public class MainActivity extends AppCompatActivity implements CameraGestureSens
                         .setAction("Action", null).show();
             }
         });
-        retrieveControls();
-
         loadOpenCV();
     }
-    protected void retrieveControls()
-    {
-        mCamera = (JavaCameraView)findViewById(R.id.camera);
-    }
-    protected void loadOpenCV()
-    {
 
-        if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_1_0, this, mLoaderCallback);
-        }
-        else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!");
-            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+    protected void retrieveControls() {
+        mCamera = (JavaCameraView) findViewById(R.id.camera);
+    }
+
+    protected void loadOpenCV() {
+//        retrieveControls();\
+        if (PermissionUtility.checkCameraPermission(this)) {
+            loc = new LocalOpenCV(this, this);
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -108,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements CameraGestureSens
             public void run() {
                 Toast.makeText(MainActivity.this, "Hand Motion Up", Toast.LENGTH_SHORT).show();
             }
-        });    }
+        });
+    }
 
     @Override
     public void onGestureDown(CameraGestureSensor caller, long gestureLength) {
@@ -143,20 +121,18 @@ public class MainActivity extends AppCompatActivity implements CameraGestureSens
             }
         });
     }
+
     @Override
-    public void onPause()
-    {
-        super .onPause();
+    public void onPause() {
+        super.onPause();
         if (mGestureSensor != null)
             mGestureSensor.stop();
     }
+
     @Override
-    public void onResume()
-    {
-        super .onResume();
-        retrieveControls();
-        if (mGestureSensor == null)
-            mGestureSensor = new CameraGestureSensor(MainActivity.this);
-        mGestureSensor.start(mCamera);
+    public void onResume() {
+        super.onResume();
+        loadOpenCV();
+
     }
 }
