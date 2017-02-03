@@ -44,7 +44,7 @@ Activity/Fragment usage:
                     super.onCreate(savedInstanceState);
                     setContentView(R.layout.activity_main);
                     if (PermissionUtility.checkCameraPermission(this)) {
-                        LocalOpenCV loader = new LocalOpenCV(MainActivity.this, MainActivity.this);
+                        LocalOpenCV loader = new LocalOpenCV(YourActivity.this, YourActivity.this);
                     }
                 }
 
