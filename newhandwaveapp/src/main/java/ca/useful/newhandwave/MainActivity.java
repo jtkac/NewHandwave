@@ -12,10 +12,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import org.opencv.android.JavaCameraView;
 import edu.washington.cs.touchfreelibrary.sensors.CameraGestureSensor;
+import edu.washington.cs.touchfreelibrary.sensors.ClickSensor;
 import edu.washington.cs.touchfreelibrary.utilities.LocalOpenCV;
 import edu.washington.cs.touchfreelibrary.utilities.PermissionUtility;
 
-public class MainActivity extends AppCompatActivity implements CameraGestureSensor.Listener {
+public class MainActivity extends AppCompatActivity implements CameraGestureSensor.Listener, ClickSensor.Listener {
     private static final String TAG = "MainActivity";
     private JavaCameraView mCamera = null;
     CameraGestureSensor mGestureSensor = null;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements CameraGestureSens
 
     protected void loadOpenCV() {
         if (PermissionUtility.checkCameraPermission(this)) {
-            LocalOpenCV loc = new LocalOpenCV(this, this);
+            LocalOpenCV loc = new LocalOpenCV(this, this, this);
         }
     }
 
@@ -125,5 +126,16 @@ public class MainActivity extends AppCompatActivity implements CameraGestureSens
         super.onResume();
         loadOpenCV();
 
+    }
+
+    @Override
+    public void onSensorClick(ClickSensor caller) {
+        Log.i(TAG, "Click");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, "CLICK!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
