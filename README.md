@@ -36,7 +36,7 @@ Manifest:
 Activity/Fragment usage:
 
 1. 
-            YourActivity implements CameraGestureSensor.Listener
+            YourActivity implements CameraGestureSensor.Listener, ClickSensor.Listener
 
 2. 
                   @Override
@@ -44,7 +44,8 @@ Activity/Fragment usage:
                     super.onCreate(savedInstanceState);
                     setContentView(R.layout.activity_main);
                     if (PermissionUtility.checkCameraPermission(this)) {
-                        LocalOpenCV loader = new LocalOpenCV(YourActivity.this, YourActivity.this);
+                        //The third passing in represents a separate click sensor which is not required if you just want the hand motions
+                        LocalOpenCV loader = new LocalOpenCV(YourActivity.this, YourActivity.this, YourActivity.this);
                     }
                 }
 
@@ -53,7 +54,7 @@ Activity/Fragment usage:
                       public void onResume() {
                           super.onResume();
                           if (PermissionUtility.checkCameraPermission(this)) {
-                              LocalOpenCV loader = new LocalOpenCV(MainActivity.this, MainActivity.this);
+                              LocalOpenCV loader = new LocalOpenCV(YourActivity.this, YourActivity.this, YourActivity.this);
                           }
                       }
 
@@ -100,6 +101,17 @@ Activity/Fragment usage:
                         @Override
                         public void run() {
                             Toast.makeText(YourActivity.this, "Hand Motion Right", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                
+                @Override
+                public void onSensorClick(ClickSensor caller) {
+                    Log.i(TAG, "Click");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "CLICK!", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
