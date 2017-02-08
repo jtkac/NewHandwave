@@ -6,11 +6,19 @@ Handwave was originally intended to be a library that would use a phone's front 
 
 I have made a big update in improving the methodology used in the original library (it is a library now and not a project).
 
+The Library now uses a programmatic instance of JavaCameraView (newer) instead of CameraBridgeViewBase
+
 The sensing of motion is now more accurate (opposed to swiping up and it picks up left/right more easily). 
 
-I have added convenience methods for initializing and checking permissions > Android M. 
+I have added convenience methods for initializing when imported as a library and checking permissions > Android M. 
 
 I have accounted for OpenCVManager not loading the correct version of OpenCV.
+
+Added pass filters for better accuracy
+
+For more compare this with https://github.com/kritts/HandWave
+
+
 
 Usage on a seperate project:
 
