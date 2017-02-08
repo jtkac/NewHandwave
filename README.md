@@ -2,9 +2,12 @@
 
 All Credit for the C files Goes to the original Kritts/Handwave Repo
 
-I have made a big update in improving the methodology used in this library (it is a library now and not a project).
+Handwave was originally intended to be a library that would use a phone's front facing camera to detect a gesture that happens overtop the phone. Generally done with your hand, you can wave your hand up, down, left, right, and further out then towards your phone which registers as a click. The motions are simplified to implement in your project with an interface that may be passed in via parameters. See the usage examples below.
+
+I have made a big update in improving the methodology used in the original library (it is a library now and not a project).
 The sensing of motion is now more accurate (opposed to swiping up and it picks up left/right more easily)
-I have added convenience methods for initializing and checking permissions > Android M
+I have added convenience methods for initializing and checking permissions > Android M.
+I have accounted for OpenCVManager not loading the correct version of OpenCV.
 
 Usage on a seperate project:
 
@@ -35,10 +38,8 @@ Manifest:
 
 Activity/Fragment usage:
 
-1. 
             YourActivity implements CameraGestureSensor.Listener, ClickSensor.Listener
 
-2. 
                   @Override
                 protected void onCreate(Bundle savedInstanceState) {
                     super.onCreate(savedInstanceState);
@@ -49,7 +50,6 @@ Activity/Fragment usage:
                     }
                 }
 
-3. 
                     @Override
                       public void onResume() {
                           super.onResume();
@@ -58,7 +58,7 @@ Activity/Fragment usage:
                           }
                       }
 
-4. Customize the following to correspond to the actions the sensor picks up:
+Customize the following to correspond to the actions the sensor picks up:
 
               @Override
                 public void onGestureUp(CameraGestureSensor caller, long gestureLength) {
