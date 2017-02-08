@@ -5,8 +5,11 @@ All Credit for the C files Goes to the original Kritts/Handwave Repo
 Handwave was originally intended to be a library that would use a phone's front facing camera to detect a gesture that happens overtop the phone. Generally done with your hand, you can wave your hand up, down, left, right, and further out then towards your phone which registers as a click. The motions are simplified to implement in your project with an interface that may be passed in via parameters. See the usage examples below.
 
 I have made a big update in improving the methodology used in the original library (it is a library now and not a project).
-The sensing of motion is now more accurate (opposed to swiping up and it picks up left/right more easily)
-I have added convenience methods for initializing and checking permissions > Android M.
+
+The sensing of motion is now more accurate (opposed to swiping up and it picks up left/right more easily). 
+
+I have added convenience methods for initializing and checking permissions > Android M. 
+
 I have accounted for OpenCVManager not loading the correct version of OpenCV.
 
 Usage on a seperate project:
