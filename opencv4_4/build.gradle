@@ -1,12 +1,8 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
-
-    defaultConfig {
-        applicationId "org.opencv"
-    }
 
     buildTypes {
         release {
