@@ -1,2 +1,2 @@
+include ':opencvsdk'
 include ':newhandwaveapp'
-include ':opencv4_4'
