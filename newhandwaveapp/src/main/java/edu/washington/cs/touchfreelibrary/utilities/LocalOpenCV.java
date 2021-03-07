@@ -98,7 +98,7 @@ public class LocalOpenCV {
     public boolean loadOpenCV(Context context) {
         if (!OpenCVLoader.initDebug()) {
             Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_1_0, context, mLoaderCallback);
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_4_0, context, mLoaderCallback);
             return false;
         } else {
             Log.d(TAG, "OpenCV library found inside package. Using it!");
@@ -110,7 +110,7 @@ public class LocalOpenCV {
     public boolean loadOpenCV(Context context, BaseLoaderCallback loaderCallback) {
         if (!OpenCVLoader.initDebug()) {
             Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_1_0, context, loaderCallback);
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_4_0, context, loaderCallback);
             return false;
         } else {
             Log.d(TAG, "OpenCV library found inside package. Using it!");

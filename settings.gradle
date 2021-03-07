@@ -1,2 +1,2 @@
 include ':newhandwaveapp'
-include ':openCVLibrary310'
+include ':opencv4_4'

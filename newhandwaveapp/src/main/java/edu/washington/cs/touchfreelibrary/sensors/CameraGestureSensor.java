@@ -31,6 +31,8 @@ import android.view.WindowManager;
  * OpenCV is initiated and before {} is called!</strong></p>
  *
  * @author Leeran Raphaely <leeran.raphaely@gmail.com>
+ *
+ *     THIS FILE WAS MODIFIED BY jtkac ON 03/06/2021 (MM/dd/yyyy)
  */
 public class CameraGestureSensor extends ClickSensor implements CameraBridgeViewBase.CvCameraViewListener2 {
     private static final String TAG = "CameraGestureSensor";
@@ -366,7 +368,7 @@ public class CameraGestureSensor extends ClickSensor implements CameraBridgeView
                 Camera mCam = Camera.open(cameraId);
                 Camera.Parameters params = mCam.getParameters();
 
-                params.set("iso", "400"); // values can be "auto", "100", "200", "400", "800", "1600"
+                params.set("iso", "auto"); // values can be "auto", "100", "200", "400", "800", "1600"
                 params.setExposureCompensation(2);
                 params.setWhiteBalance("fluorescent");
 
